@@ -1,23 +1,21 @@
 
 #izquierda{
     height:100%;
-       /* background-color: aqua; */
+       
         float:left;
         width:50%;
-        margin-top: 5rem;
 }
 #derecha{
         height:100%;
-      /* background-color: blue; */
+      
         float:right;
         width:50%;
-        margin-top: 5rem;
        
 }
 body {
     font-family: var(--font-default);
     color: var(--color-default);
-    background-image: url("../img/fondo.jpg");
+    background-color:black;
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -25,4 +23,10 @@ h2
 {
       font-family: sans-serif;
 color: aliceblue;
+}
+#header{
+    display: flexbox;
+    margin:0px;
+    
+
 }
