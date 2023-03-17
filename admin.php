@@ -1,3 +1,39 @@
+<?php
+require './DB/conexion_bd.php';
+
+$obj = new BD_PDO();
+
+// Verificar si se ha enviado el formulario
+if(isset($_POST["submit"])) {
+  // Verificar si no hay errores en la carga del archivo
+  if ($_FILES["archivo"]["error"] == UPLOAD_ERR_OK) {
+    // Obtener información del archivo
+    $nombreArchivo = $_FILES["archivo"]["name"];
+    $tipoArchivo = $_FILES["archivo"]["type"];
+    $tamanoArchivo = $_FILES["archivo"]["size"];
+    $nombreTemporalArchivo = $_FILES["archivo"]["tmp_name"];
+
+    // Mover el archivo a la carpeta de destino en el servidor
+    $carpetaDestino = "archivos/";
+    $rutaArchivo = $carpetaDestino . $nombreArchivo;
+    move_uploaded_file($nombreTemporalArchivo, $rutaArchivo);
+
+    // Guardar la ruta del archivo en la base de datos
+    $conexion = new mysqli("localhost", "usuario", "contraseña", "basededatos");
+    $sql = "INSERT INTO vistaadmin (imagen, ruta_archivo) VALUES ('$nombreArchivo', '$rutaArchivo')";
+    $resultado = $conexion->query($sql);
+
+    
+    echo "El archivo de música se ha cargado correctamente.";
+  } else {
+    echo "Ha ocurrido un error al cargar el archivo de música.";
+  }
+}
+?>
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -7,7 +43,7 @@
     <title>Download DC</title>
     <meta content="" name="description" />
     <meta content="" name="keywords" />
-    <link rel="stylesheet" href="./admin.css">
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -78,9 +114,8 @@
                             <li class="nav-item">
                             <a href="#" class="nav-link active">Listado Canciones</a>
                             </li>
-
                             <li class="nav-item">
-                            <a href="#" class="nav-link active">Subir cancion</a>
+                              <a href="#modal1">Agregar cantante</a>
                             </li>
 
                         </ul>
@@ -89,16 +124,50 @@
             </header>
     <!-- End Header -->
     <body>       
+      <div>
+        <id="modal1" class="modalmask">
+          <div class="modalbox movedown">
+            <a href="#close" title="close" class="close">X</a>
+            <h2>Ventana modal</h2>
+            <p>Esto es una ventana modal</p>
+          </div>
+              </div>
                 <div class="zona1">
                     <p>Busqueda: 
                         <input type="text" name="nombre" id="nombre">
                         <input type="button" value="Buscar" id="buscar">
+                        <br><br>
+                        <nav class="menu">
+                          <section class="menu_container">
+                            <h1 class="menu_logo">
+
+                            <form method="post" action="admin.php" enctype="multipart/form-data">
+  <label for="archivo">Seleccionar archivo MP3:</label>
+  <input type="file" name="archivo" id="archivo">
+  <br>
+  <input type="submit" name="submit" value="Cargar archivo">
+</form>
+
+                        <strong>Michelle</strong>  
+                  <p>Dark room</p>
+                    <audio controls>
+                      <source src="assets/audio/michele/cancion1.mp3" type="audio/mpeg" >
+                  </audio>
+                  <br>
+                  <p>Fell it<p>
+                    <audio controls>
+                      <source src="assets/audio/michele/cancion2.mp3" type="audio/mpeg" >
+                    </audio>
+                    <p>Hard for me<p>
+                    <audio controls>
+                      <source src="assets/audio/michele/cancion3.mp3" type="audio/mpeg" >
+                    </audio>
+                    <p>Watch me burn<p>
+                    <audio controls>
+                      <source src="assets/audio/michele/cancion4.mp3" type="audio/mpeg" >
+                    </audio>
                     </p>
                     
-                </div>
-
-                <div class="zona2">
-                    <p>Muscia</p>
                 </div>
 
                 <div class="zona3">
