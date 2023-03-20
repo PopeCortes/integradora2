@@ -1,38 +1,3 @@
-<?php
-require './DB/conexion_bd.php';
-
-$obj = new BD_PDO();
-
-// Verificar si se ha enviado el formulario
-if(isset($_POST["submit"])) {
-  // Verificar si no hay errores en la carga del archivo
-  if ($_FILES["archivo"]["error"] == UPLOAD_ERR_OK) {
-    // Obtener información del archivo
-    $nombreArchivo = $_FILES["archivo"]["name"];
-    $tipoArchivo = $_FILES["archivo"]["type"];
-    $tamanoArchivo = $_FILES["archivo"]["size"];
-    $nombreTemporalArchivo = $_FILES["archivo"]["tmp_name"];
-
-    // Mover el archivo a la carpeta de destino en el servidor
-    $carpetaDestino = "archivos/";
-    $rutaArchivo = $carpetaDestino . $nombreArchivo;
-    move_uploaded_file($nombreTemporalArchivo, $rutaArchivo);
-
-    // Guardar la ruta del archivo en la base de datos
-    $conexion = new mysqli("localhost", "usuario", "contraseña", "basededatos");
-    $sql = "INSERT INTO vistaadmin (imagen, ruta_archivo) VALUES ('$nombreArchivo', '$rutaArchivo')";
-    $resultado = $conexion->query($sql);
-
-    
-    echo "El archivo de música se ha cargado correctamente.";
-  } else {
-    echo "Ha ocurrido un error al cargar el archivo de música.";
-  }
-}
-?>
-
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -69,10 +34,52 @@ if(isset($_POST["submit"])) {
     <link href="assets/vendor/aos/aos.css" rel="stylesheet" />
 
     <!-- Template Main CSS File -->
-    <link href="assets/css/admin.css" rel="stylesheet" />
+    <link href="assets/css/adm.css" rel="stylesheet">
+
   </head>
 
-  <body>
+   <!-- Modal Regisrar usuarios -->
+<div class="modal fade" id="RegistrarModal" style=" background-color: rgba(0, 0, 0, 0.5) !important;" tabindex="1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content" style="  color: #fff !important;">
+      <div class="modal-header">
+        <img id="imagen_modal" src="./assets/img/logo integradora.png" alt="">
+        <!-- <h2 class="modal-title " id="exampleModalLabel" style="color: #000;">Download DC</h2> -->
+        <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+      </div>
+      <div class="modal-body modal_inicio" style="color: #fff;">
+                <!-- Inicia Fomulario -->
+        <form method="post">
+        <h1>Registro</h1>
+<br>
+          <label for="usuario">Cantante</label>
+          <form method="post">
+          <input class="text" type="text" name="cantante" placeholder="Cantante" >
+          <br><br>
+          <label for="usuario">Direccion imagen</label>
+          <input class="text" type="text" name="imagen" placeholder="Imagen">
+          <br><br>
+          <label for="usuario">Direccion cancion</label>
+          <input class="text" type="text" name="cancion" placeholder="Cancion" >
+          <br><br>
+
+          <input type="submit" name="registrar" value="Registrar" class="btn btn-outline-success">
+
+        </form>
+        <?php
+        include("registroc.php");
+        ?>
+          <br><br>
+          
+        </div>
+        <div class="modal-footer modal_inicio">
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
+        </div>
+      </form>      <!-- Termina Forulario -->
+    </div>
+  </div>
+</div> <!-- Cierra modal -->
+
     <!-- ======= Header ======= -->
     <header id="header" class="header d-flex align-items-center fixed-top">
       <div
@@ -90,7 +97,7 @@ if(isset($_POST["submit"])) {
 
         <!-- Inicio de sesion -->
         <div class="header-social-links">
-          <a style="margin: 0px" href="./index.html"
+          <a style="margin: 0px" href="./index.php"
             ><img
               width="40px"
               style="filter: invert(100%); margin: auto 20px;"
@@ -112,11 +119,9 @@ if(isset($_POST["submit"])) {
     <div class="collapse navbar-collapse" id="navbarHeader">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                             <li class="nav-item">
-                            <a href="#" class="nav-link active">Listado Canciones</a>
+                            <a href="gallery-single.html" data-bs-toggle="modal" data-bs-target="#RegistrarModal" class="details-link">Agregar cantante</a>        <!-- Button trigger modal -->
                             </li>
-                            <li class="nav-item">
-                              <a href="#modal1">Agregar cantante</a>
-                            </li>
+
 
                         </ul>
                </div>
@@ -124,54 +129,58 @@ if(isset($_POST["submit"])) {
             </header>
     <!-- End Header -->
     <body>       
-      <div>
-        <id="modal1" class="modalmask">
-          <div class="modalbox movedown">
-            <a href="#close" title="close" class="close">X</a>
-            <h2>Ventana modal</h2>
-            <p>Esto es una ventana modal</p>
-          </div>
-              </div>
+     
                 <div class="zona1">
-                    <p>Busqueda: 
-                        <input type="text" name="nombre" id="nombre">
-                        <input type="button" value="Buscar" id="buscar">
-                        <br><br>
-                        <nav class="menu">
-                          <section class="menu_container">
-                            <h1 class="menu_logo">
-
-                            <form method="post" action="admin.php" enctype="multipart/form-data">
-  <label for="archivo">Seleccionar archivo MP3:</label>
-  <input type="file" name="archivo" id="archivo">
-  <br>
-  <input type="submit" name="submit" value="Cargar archivo">
-</form>
-
-                        <strong>Michelle</strong>  
-                  <p>Dark room</p>
-                    <audio controls>
-                      <source src="assets/audio/michele/cancion1.mp3" type="audio/mpeg" >
-                  </audio>
-                  <br>
-                  <p>Fell it<p>
-                    <audio controls>
-                      <source src="assets/audio/michele/cancion2.mp3" type="audio/mpeg" >
-                    </audio>
-                    <p>Hard for me<p>
-                    <audio controls>
-                      <source src="assets/audio/michele/cancion3.mp3" type="audio/mpeg" >
-                    </audio>
-                    <p>Watch me burn<p>
-                    <audio controls>
-                      <source src="assets/audio/michele/cancion4.mp3" type="audio/mpeg" >
-                    </audio>
-                    </p>
                     
-                </div>
+                    <?php
+                    $link = new PDO("mysql:host=localhost;dbname=integradora2","root","");
+                    ?>
+                    <p>Busqueda: </p>
+                      <form action="" method="get">
+                        <input type="text" name="busqueda">
+                        <input type="submit" name="enviar" value="Buscar" > 
+                  </form>
+                    <?php  
+                  if(isset($_GET['enviar'])){
+                    $busqueda = $_GET['busqueda'];
 
-                <div class="zona3">
-                    <p>TOP</p>
+                    $consulta = $conexion->query("SELECT imagen,cantante,cancion FROM musica WHERE cantante like '%$busqueda%' order by cantante");
+                  }
+                  ?>
+                    <table class= "table table-striped">
+
+                    <thead>
+                      <tr>
+                        <th>Imagen</th>
+                        <th>Nombre</th>
+                        <th>Musica</th>                      
+                      </tr>
+                      <thead>
+                        <?php foreach($link->query("SELECT * FROM musica")as $row){?>
+                          <tr>
+                            <td><img src="<?php echo $row["imagen"]?>" width="100" height="100"></td>
+                            <td><?php echo $row["cantante"]?></td>
+                            <td><audio controls><source src="<?php echo $row["cancion"]?>"type="audio/mpeg"></audio></td>
+                        </tr>
+                        <?php } ?>
+                        <br> <br>
+
+                    <table class= "table table-striped">
+
+                    <thead>
+                      <tr>
+                        <th>TOP</th>
+                        <th>Nombre</th>
+                      </tr>
+                      <thead>
+                        <!-- 
+                        <?php foreach($link->query("SELECT * FROM musica")as $row){?>
+                          <tr>
+                            <td><?php echo $row["id_cantante"]?></td>
+                            <td><?php echo $row["cantante"]?></td>
+                        </tr>
+                        <?php } ?>
+                        -->
                 </div>
 
     <div id="preloader">
