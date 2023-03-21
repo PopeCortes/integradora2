@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 03-02-2023 a las 01:13:16
+-- Tiempo de generación: 21-03-2023 a las 18:05:33
 -- Versión del servidor: 10.4.27-MariaDB
--- Versión de PHP: 8.0.25
+-- Versión de PHP: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,6 +24,26 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `musica`
+--
+
+CREATE TABLE `musica` (
+  `id_cantante` bigint(20) NOT NULL,
+  `imagen` varchar(50) NOT NULL,
+  `cantante` varchar(50) NOT NULL,
+  `cancion` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `musica`
+--
+
+INSERT INTO `musica` (`id_cantante`, `imagen`, `cantante`, `cancion`) VALUES
+(1, './assets/img/cantantes/michele.png', 'michelle', './assets/audio/michele/cancion1.mp3');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `registrousuario`
 --
 
@@ -31,8 +51,20 @@ CREATE TABLE `registrousuario` (
   `id_Registrar` bigint(20) NOT NULL,
   `Usuario` varchar(20) NOT NULL,
   `Correo` varchar(100) NOT NULL,
-  `Password` varchar(255) NOT NULL
+  `Password` varchar(255) NOT NULL,
+  `Privilegio` varchar(50) NOT NULL DEFAULT 'cliente'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `registrousuario`
+--
+
+INSERT INTO `registrousuario` (`id_Registrar`, `Usuario`, `Correo`, `Password`, `Privilegio`) VALUES
+(3, 'pope', 'pope@gmail.com', '1234567890', 'Admin'),
+(4, 'raul', 'raul@gmail.com', 'qwertyuiop', 'cliente'),
+(5, 'juan', 'juan@gmail.com', 'juan123', 'cliente'),
+(6, 'Huervo', 'huervo@gmail.com', '123', 'cliente'),
+(7, 'cesar', 'cesar@correo.com', '123', 'cliente');
 
 -- --------------------------------------------------------
 
@@ -64,6 +96,12 @@ CREATE TABLE `vistaadmin` (
 --
 
 --
+-- Indices de la tabla `musica`
+--
+ALTER TABLE `musica`
+  ADD PRIMARY KEY (`id_cantante`);
+
+--
 -- Indices de la tabla `registrousuario`
 --
 ALTER TABLE `registrousuario`
@@ -86,10 +124,16 @@ ALTER TABLE `vistaadmin`
 --
 
 --
+-- AUTO_INCREMENT de la tabla `musica`
+--
+ALTER TABLE `musica`
+  MODIFY `id_cantante` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT de la tabla `registrousuario`
 --
 ALTER TABLE `registrousuario`
-  MODIFY `id_Registrar` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_Registrar` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `usuariocomentario`
