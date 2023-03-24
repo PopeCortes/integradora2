@@ -2,9 +2,8 @@
 require "./DB/conexion_bd.php";
 $obj=new BD_PDO();
 $MOSTRAR_DATOS = $obj->Ejecutar_Instruccion("SELECT * FROM musica")
-
-
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -21,21 +20,19 @@ $MOSTRAR_DATOS = $obj->Ejecutar_Instruccion("SELECT * FROM musica")
 <body>
 
     <!-- Container izquierdo -->
-    <div id="contenedor">
-        <div id="cabecera"></div>
-        <div id="menu"></div>
         <div id="izquierda">
+
             <h2> Top artistas </h2>
-         
-            <button id="next" class="dropdown-btn">Shakira</button>
++         
+            <button id="next" class="btn-neon">Shakira</button>
         <div class="dropdown-content">
             <!-- musica con descarga -->
             <p> BIZZARAP</p>
             <audio controls><source src="./audio/1.mp3" type="audio/mpeg"></audio>
-         <a href="./audio/1.mp3" download><img width="60px" src="./img/descargar.png"alt=""></a>
+         <a href="./audio/1.mp3" download><img width="60px" src="./assets/img/descargar.png"alt=""></a>
          <p> Shakira - TQG</p>
             <audio controls><source src="./audio/Karol_G_ft_Shakira_TQG.mp3" type="audio/mpeg"></audio>
-         <a href="./audio/Karol_G_ft_Shakira_TQG.mp3" download><img width="60px" src="./img/descargar.png"alt=""></a>
+         <a href="./audio/Karol_G_ft_Shakira_TQG.mp3" download><img width="60px" src="./assets/img/descargar.png"alt=""></a>
         </div>
 
    
@@ -44,29 +41,29 @@ $MOSTRAR_DATOS = $obj->Ejecutar_Instruccion("SELECT * FROM musica")
         <br>
         <br>
         <!-- inicia otra cancion -->
-        <button id="next" class="dropdown-btn">Anuel AA</button>
+        <button id="next" class="btn-neon">Anuel AA</button>
         <div class="dropdown-content ">
             <!-- musica con descarga -->
             <p> Anuel aa - Monstruo</p>
             <audio controls><source src="./audio/Anuel_monstruo.mp3" type="audio/mpeg"></audio>
-         <a href="./audio/Anuel_monstruo.mp3" download><img width="60px" src="./img/descargar.png"alt=""></a>
+         <a href="./audio/Anuel_monstruo.mp3" download><img width="60px" src="./assets/img/descargar.png"></a>
         </div>
     <br><br>
 
-                    <button id="next" class="dropdown-btn">Bad Bunny</button>
+                    <button id="next" class="btn-neon">Bad Bunny</button>
         <div class="dropdown-content">
             <!-- musica con descarga -->
             <p>Bad Bunny - Un coco</p>
             <audio controls><source src="./audio/Bad_Bunny_Un Coco.mp3" type="audio/mpeg"></audio>
-         <a href="./audio/Bad_Bunny_Un Coco.mp3" download><img width="60px" src="./img/descargar.png"alt=""></a>
+         <a href="./audio/Bad_Bunny_Un Coco.mp3" download><img width="60px" src="./assets/img/descargar.png"alt=""></a>
         </div>
 <br><br>
-        <button id="next" class="dropdown-btn">Natanael Cano</button>
+        <button id="next" class="btn-neon">Natanael Cano</button>
         <div class="dropdown-content">
             <!-- musica con descarga -->
             <p>Natanael Cano - Arriba</p>
             <audio controls><source src="./audio/Natanael_Cano_Arriba.mp3" type="audio/mpeg"></audio>
-         <a href="./audio/Natanael_Cano_Arriba.mp3" download><img width="60px" src="./img/descargar.png"alt=""></a>
+         <a href="./audio/Natanael_Cano_Arriba.mp3" download><img width="60px" src="./assets/img/descargar.png"alt=""></a>
         </div>
 
 
@@ -91,9 +88,7 @@ $MOSTRAR_DATOS = $obj->Ejecutar_Instruccion("SELECT * FROM musica")
 
     <style>
 
-
-
-        .dropdown-btn {
+            .dropdown-btn {
             background-color: #4CAF50;
             color: white;
             padding: 12px;
@@ -106,13 +101,37 @@ $MOSTRAR_DATOS = $obj->Ejecutar_Instruccion("SELECT * FROM musica")
             display: none;
             background-color: red;
             color: #fff;
-            padding: 12px;
+            padding: 10px;
         }
+        .btn-neon{
+    position: relative;
+    display: inline-block;
+    padding: 2px 10px;
+    color:black;
+    letter-spacing: 3px;
+    text-decoration: none;
+    font-size: 24px;
+    overflow: hidden;
+    transition: 0s;
+}
+.btn-neon:hover{
+    background: darkcyan;
+    box-shadow: 0 0 50px darkcyan, 0 0 70px darkcyan, 0 0 200px darkcyan;
+    transition-delay: 0s;
+ }
+.btn-neon span{
+    position: absolute;
+    display: block;
+}
+
+
     </style>
 
 <!-- Scrip para el boton de cada artista -->
-<script src="./js/jq.js" ></script>
-<script src="./js/main.js"></script>
+<script src="./main.js"></script>
+<script>$(document).on("click", "#next", function (){
+    $(this).next().slideToggle();
+})</script>
 
 </body>
 

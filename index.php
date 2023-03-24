@@ -20,6 +20,7 @@ session_start();
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Cardo:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 
+
   <!-- Vendor CSS Files -->
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
@@ -41,10 +42,10 @@ session_start();
 </head>
 
 <body>
+
+  <!-- php -->
   <?php
   require './RegistrarUsuario.php';
-
-
   ?>
 
 
@@ -90,7 +91,7 @@ session_start();
           <!-- <h2 class="modal-title " id="exampleModalLabel" style="color: #000;">Download DC</h2> -->
           <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
         </div>
-        <div class="modal-body modal_inicio" style="color: #fff;" >
+        <div class="modal-body modal_inicio" style="color: #fff;">
           <form action="index.php" method="post"> <!-- Inicio Sesion Formulario -->
             <h1>Inicio de sesion</h1>
             <label for="correo">Correo</label>
@@ -125,33 +126,21 @@ session_start();
         <h1>Download Music</h1>
       </a>
 
+      
       <nav id="navbar" class="navbar">
-
         <ul>
-          <li><a href="index.html" class="active">Inicio</a></li>
-          <li><a href="about.html">About</a></li>
-          <li class="dropdown"><a href="#"><span>Gallery</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
-            <ul>
-              <li><a href="gallery.html">Nature</a></li>
-              <li><a href="gallery.html">People</a></li>
-              <li><a href="gallery.html">Architecture</a></li>
-              <li><a href="gallery.html">Animals</a></li>
-              <li><a href="gallery.html">Sports</a></li>
-              <li><a href="gallery.html">Travel</a></li>
-
-            </ul>
-          </li>
-          <li><a href="services.html">Services</a></li>
-          <li><a href="contact.html">Contact</a></li>
+          <li><a href="gallery-single.html" data-bs-toggle="modal" data-bs-target="#exampleModal" class="details-link">Inicio de sesion</a></li>
+          <li><a href="gallery-single.html" data-bs-toggle="modal" data-bs-target="#RegistrarModal" class="details-link">Registrar</a></li>
         </ul>
-      </nav><!-- .navbar -->
 
-      <div class="header-social-links">
-        <!--  Inicio de sesion -->
-        <a href="gallery-single.html" data-bs-toggle="modal" data-bs-target="#exampleModal" class="details-link">Inicio de sesion</a> <!-- Button trigger modal -->
-        <a href="gallery-single.html" data-bs-toggle="modal" data-bs-target="#RegistrarModal" class="details-link">Registrar</a> <!-- Button trigger modal -->
+                  <!--  Inicio de sesion -->
+           <!-- Button trigger modal -->
+           <!-- Button trigger modal -->
+      </nav>
+        
 
-      </div>
+
+
       <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
       <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
     </div>
@@ -367,6 +356,7 @@ session_start();
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
 
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </body>
 
 </html>
