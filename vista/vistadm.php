@@ -94,7 +94,7 @@
 		border: none; outline: none; background: #e6e6fa; border-bottom: 3px solid">
 		<br>
 		<br>
-		<input type="submit" id="btninsertar" name="btninsertar" value="<?php if(isset($_GET['idmodificar']))
+		<input class="insertar" type="submit" id="btninsertar" name="btninsertar" value="<?php if(isset($_GET['idmodificar']))
 		{ 
 			echo 'Modificar';
 		}
@@ -119,19 +119,18 @@
 <div class="zona1">
 	<form action="indexadm.php" id="frmbuscar" name="frmbuscar" method="post">
 		<label for="">Buscar: </label>
-		<input type="text" id="txtbuscar" name="txtbuscar" style="width: 11%;
+		<input class="busqueda" type="text" id="txtbuscar" name="txtbuscar" style="width: 11%;
 		border: none; outline: none; background: #e6e6fa; border-bottom: 1px solid">
-		<input type="submit" id="btnbuscar" name="btnbuscar" value="Buscar" >
+		<input class="buscar"type="submit" id="btnbuscar" name="btnbuscar" value="Buscar" >
 		<br><br>
 		<table class= "table table-striped">
 			<tr>
-				<td align="center" height="50" width="150"  >Número</td>
-				<td align="center"  height="50" width="150" >Imagen</td>
-				<td align="center" height="50" width="150"  >Cantante</td>
-				<td align="center" height="50" width="150"  >Nombre cancion</td>
-				<td align="center" height="50" width="150"  >Cancion</td>
+				<td align="center"  height="50" width="150" style="color:#fff" >Imagen</td>
+				<td align="center" height="50" width="150"  style="color:#fff">Cantante</td>
+				<td align="center" height="50" width="150"  style="color:#fff">Nombre cancion</td>
+				<td align="center" height="50" width="150"  style="color:#fff">Cancion</td>
 
-				<td bgcolor="00FF00" style="border-right: 1px solid;" colspan="2" align="center">Accion</td>
+				<td style="color:#fff" style="border-right: 1px solid;" colspan="2" align="center" >Accion</td>
 			</tr>
 			<?php echo $datos; ?>
 		</table>

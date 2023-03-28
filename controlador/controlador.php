@@ -38,14 +38,14 @@ class musica extends BD_PDO
 		foreach ($result as $renglon) 
 		{
 			$tabla.="<tr>";
-			$tabla.='<td align="center">'.$renglon[0].'</td>';
+			// $tabla.='<td align="center">'.$renglon[0].'</td>';
 			$tabla.='<td align="center"><img src='.$renglon[1].' width="100" height="100"></td>';
-			$tabla.='<td align="center">'.$renglon[2].'</td>';
-			$tabla.='<td align="center">'.$renglon[3].'</td>';
+			$tabla.='<td align="center"style="color:#fff">'.$renglon[2].'</td>';
+			$tabla.='<td align="center"style="color:#fff">'.$renglon[3].'</td>';
 			$tabla.='<td align="center"><audio controls><source src='.$renglon[4].' type="audio/mpeg"</td>';
-			$tabla.='<td align="center"><input type="button" id="btneliminar" name="btneliminar" value="Eliminar" onclick="javascript: eliminar('.$renglon[0].');"></td>';
-			$tabla.='<td align="center"><input type="button" id="btnmodificar" name="btnmodificar" value="Modificar" onclick="javascript: modificar('.$renglon[0].');"></td>
-				</tr>';
+			$tabla.='<td align="center"><input class="eliminar" type="button" id="btneliminar" name="btneliminar" value="Eliminar" onclick="javascript: eliminar('.$renglon[0].');"></td>';
+			$tabla.='<td align="center"><input class="modificar" type="button" id="RegistrarModal" name="btnmodificar" value="Modificar" onclick="javascript: modificar('.$renglon[0].');"></td>
+			</tr>';
 		}
 		return $tabla;
 	}
