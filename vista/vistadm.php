@@ -80,8 +80,9 @@
 		<br>
 		<br>
 		<label for="">Direccion imagen: </label>
-		<input type="text" id="txtfecha" name="imagen" value="<?php echo @$buscar_mod[0][2]; ?>" style="width: 50%;
-		border: none; outline: none; background: #e6e6fa; border-bottom: 3px solid">
+		<form action="/upload" method="post" enctype="multipart/form-data">
+			<input type="file" name="FileToUpload" id="FileToUpload">
+		</form>
 		<br>
 		<br>
 		<label for="">Nombre cancion: </label>
@@ -90,8 +91,8 @@
 		<br>
 		<br>
 		<label for="">Direccion cancion: </label>
-		<input type="text" id="txtfecha" name="cancion" value="<?php echo @$buscar_mod[0][4]; ?>" style="width: 50%;
-		border: none; outline: none; background: #e6e6fa; border-bottom: 3px solid">
+		<form action="/upload" method="post" enctype="multipart/form-data">
+			<input type="file" name="FileToUpload" id="FileToUpload">
 		<br>
 		<br>
 		<input class="insertar" type="submit" id="btninsertar" name="btninsertar" value="<?php if(isset($_GET['idmodificar']))
